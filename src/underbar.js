@@ -114,9 +114,9 @@
     // the members, it also maintains an array of results.
     var res = [];
 
-    for(var n=0;n<collection.length;n+=1) {
-      res.push(iterator(collection[n],n,collection));
-    }
+    _.each(collection, function(item) {
+      res.push(iterator(item));
+    });
 
     return res;
   };
