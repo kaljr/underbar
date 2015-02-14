@@ -160,6 +160,16 @@
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
+    if(!Array.isArray(collection)) {
+      var newColl = [];
+
+      _.each(collection, function(item) {
+        newColl.push(item);
+      });
+
+      collection = newColl;
+    }
+
     accumulator === undefined ? accumulator=collection.shift() : 1;
 
     if(collection.length === 0) {
