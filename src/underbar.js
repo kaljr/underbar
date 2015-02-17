@@ -232,6 +232,14 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
+    
+    _.each(_.last(Array.prototype.slice.apply(arguments),arguments.length-1),function(ob,index) {
+      _.each(ob,function(value,prop) {
+        obj[prop] = value;
+      });
+    });
+
+    return obj;
   };
 
   // Like extend, but doesn't ever overwrite a key that already
