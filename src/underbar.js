@@ -296,6 +296,15 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    var memo = [];
+    return function() {
+      var argList = _.reduce(arguments, function(accumulator,next) { return accumulator+","+next;});
+      if(memo[argList]) {
+        return memo[argList];
+      }
+      memo[argList] = func.apply(this,arguments);
+      return memo[argList];
+    };
   };
 
   // Delays a function for the given number of milliseconds, and then calls
